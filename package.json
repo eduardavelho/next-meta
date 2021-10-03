@@ -1,7 +1,7 @@
 {
-  "name": "next-cms",
+  "name": "@egvelho/next-meta",
   "version": "1.16.4",
-  "description": "Boilerplate for Next.js and Material UI",
+  "description": "Metadata management for Next.js on top of NetlifyCMS",
   "main": "index.js",
   "scripts": {
     "build": "tsc --build tsconfig.build.json",
@@ -21,8 +21,6 @@
     "favicons": "^6.2.2",
     "netlify-cms": "^2.10.158",
     "netlify-cms-core": "^2.47.2",
-    "next": "^11.1.0",
-    "react": "^17.0.2",
     "remark-highlight.js": "^6.0.0",
     "remark-html": "^13.0.1",
     "remark-parse": "^9.0.0",
@@ -38,7 +36,14 @@
     "@types/react": "^17.0.19",
     "@types/sharp": "^0.28.5",
     "@types/slug": "^5.0.2",
+    "next": "^11.1.0",
+    "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "typescript": "^4.3.5"
+  },
+  "peerDependencies": {
+    "next": "=11.1.0",
+    "react": "=17.0.2",
+    "react-dom": "=17.0.2"
   }
 }

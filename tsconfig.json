@@ -8,11 +8,7 @@
     "lib": ["es2020", "dom"],
     "baseUrl": ".",
     "noEmit": true,
-    "noUnusedLocals": false,
-    "paths": {
-      "next-cms": ["src/index.ts"],
-      "next-cms/*": ["src/*"]
-    }
+    "noUnusedLocals": false
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*", "scripts/**/*"]

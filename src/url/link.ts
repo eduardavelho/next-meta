@@ -23,7 +23,7 @@ export type ExtractLinkHref<Href> = Href extends Link<any, infer LinkHref, any>
 
 export interface Link<Props, Query, Href> {
   href: Href;
-  icon: string;
+  Icon: React.ElementType;
   label: string;
   longLabel: string;
 }
@@ -42,7 +42,7 @@ export function link<
   Href extends "withQuery" | undefined = undefined
 >(
   href: Href extends "withQuery" ? (query: Query) => string : string,
-  icon: Link<Props, Query, Href>["icon"],
+  Icon: Link<Props, Query, Href>["Icon"],
   label: Link<Props, Query, Href>["label"],
   longLabel: Link<Props, Query, Href>["longLabel"] = label
 ): Link<
@@ -50,5 +50,5 @@ export function link<
   Query,
   Href extends "withQuery" ? (query: Query) => string : string
 > {
-  return { href, icon, label, longLabel };
+  return { href, Icon, label, longLabel };
 }
