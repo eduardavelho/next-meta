@@ -136,7 +136,7 @@ export async function localCmsApiRoute(
         break;
       }
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error(
       `Error handling ${JSON.stringify(req.body)}: ${error.message}`
     );
