@@ -1,6 +1,6 @@
 {
   "name": "@egvelho/next-meta",
-  "version": "1.16.5",
+  "version": "1.16.6",
   "description": "Metadata management for Next.js on top of NetlifyCMS",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "netlify-cms": "^2.10.158",
     "netlify-cms-core": "^2.47.2",
     "remark-highlight.js": "^6.0.0",
-    "remark-html": "^13.0.1",
+    "remark-html": "^12.0.0",
     "remark-parse": "^9.0.0",
     "sharp": "^0.29.0",
     "sitemap": "^7.0.0",
