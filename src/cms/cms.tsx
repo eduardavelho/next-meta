@@ -1,12 +1,11 @@
 import React from "react";
 import { getCmsConfig, CmsConfig } from "./get-cms-config";
 
-async function loadNetlifyCms({
-  onBeforeLoad,
-  ...config
-}: CmsConfig & {
+export type CmsProps = CmsConfig & {
   onBeforeLoad?: () => Promise<void>;
-}) {
+};
+
+async function loadNetlifyCms({ onBeforeLoad, ...config }: CmsProps) {
   if (document.querySelector("#nc-root") !== null) {
     return;
   }
@@ -44,9 +43,9 @@ async function loadNetlifyCms({
   window.initCMS(getCmsConfig(config));
 }
 
-export function Cms(config: CmsConfig) {
+export function Cms(props: CmsProps) {
   React.useEffect(() => {
-    loadNetlifyCms(config);
+    loadNetlifyCms(props);
 
     return () => {
       document.querySelector("#nc-root")?.remove();
