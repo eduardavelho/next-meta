@@ -1,7 +1,12 @@
 import React from "react";
 import { getCmsConfig, CmsConfig } from "./get-cms-config";
 
-async function loadNetlifyCms(config: CmsConfig) {
+async function loadNetlifyCms({
+  onBeforeLoad,
+  ...config
+}: CmsConfig & {
+  onBeforeLoad?: () => Promise<void>;
+}) {
   if (document.querySelector("#nc-root") !== null) {
     return;
   }
@@ -32,6 +37,8 @@ async function loadNetlifyCms(config: CmsConfig) {
   while ((window as any).initCMS === undefined) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
+
+  onBeforeLoad && (await onBeforeLoad());
 
   // @ts-ignore
   window.initCMS(getCmsConfig(config));
