@@ -53,7 +53,9 @@ async function getUrls(
           const urls: Array<Url> = !getPaths
             ? []
             : await Promise.all<Url>(
-                (await getPaths({})).paths?.map(
+                (
+                  await getPaths({})
+                ).paths?.map(
                   async ({ params }: any) =>
                     ({
                       disallow: page.disallow ?? false,
@@ -138,7 +140,7 @@ function getSitemap(urls: Array<Url>) {
   const links = urls
     .filter(({ disallow }) => !disallow)
     .map(({ priority, changefreq, lastmod, url }) => ({
-      url,
+      url: url.endsWith("/") ? url.slice(0, -1) : url,
       changefreq,
       priority,
       lastmod,
@@ -157,7 +159,7 @@ function getSitemap(urls: Array<Url>) {
 function getRobots(urls: Array<Url>): string {
   const disallowedUrls = urls.filter(({ disallow }) => disallow);
   const publicUrl = process.env.NEXT_PUBLIC_URL?.endsWith("/")
-    ? process.env.NEXT_PUBLIC_URL?.slice(-1)
+    ? process.env.NEXT_PUBLIC_URL?.slice(0, -1)
     : process.env.NEXT_PUBLIC_URL;
 
   return `User-agent: *\n${disallowedUrls.map(
