@@ -1,6 +1,6 @@
 {
   "name": "@egvelho/next-meta",
-  "version": "1.16.10",
+  "version": "1.16.11",
   "description": "Metadata management for Next.js on top of NetlifyCMS",
   "main": "index.js",
   "scripts": {

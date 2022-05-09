@@ -11,14 +11,14 @@ export function envEntry<T>(
     name === "NODE_ENV";
 
   if (isClient && isPublicEntry === false) {
-    return (undefined as any) as T;
+    return undefined as any as T;
   }
 
   const value_: any = value
     ? value.replace(/(\r\n|\n|\r)/gm, "")
     : defaultValue ?? undefined;
 
-  if (!value && !defaultValue && typeof window === "undefined") {
+  if (!value && defaultValue === undefined && typeof window === "undefined") {
     throw new Error(`Entry value for "${name}" was not found in env.`);
   }
 
