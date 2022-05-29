@@ -11,7 +11,11 @@ export interface GoatCounterProps {
 }
 
 export function GoatCounter({ code, ...props }: GoatCounterProps) {
-  if (typeof window !== "undefined" && process.env.NODE_ENV === "production") {
+  if (
+    typeof window !== "undefined" &&
+    process.env.NODE_ENV === "production" &&
+    code
+  ) {
     const path = props.path || window.location.pathname;
     const title = props.title || document.title;
     const referrer = props.referrer || document.referrer;

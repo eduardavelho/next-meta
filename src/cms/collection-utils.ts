@@ -1,5 +1,6 @@
 import { promises as fs, existsSync } from "fs";
 import path from "path";
+import cheerio from "cheerio";
 import unified from "unified";
 import remarkParse from "remark-parse";
 // @ts-ignore
@@ -90,8 +91,25 @@ export function filenameToSlug(fileName: CollectionFile) {
   return slugify(path.basename(fileName.split(".").slice(0, -1).join(".")));
 }
 
-export async function markdownToHtml(markdown: string) {
-  return (await markdownProcessor.process(markdown)).contents.toString();
+export async function markdownToHtml(markdown: string): Promise<string> {
+  const htmlContent = (
+    await markdownProcessor.process(markdown)
+  ).contents.toString();
+
+  if (htmlContent.includes(`<code class="hljs`)) {
+    const $ = cheerio.load(htmlContent);
+    $("code").each((_, code) => {
+      const lines = $(code).html()?.split("\n") ?? [];
+      const codeWithLines = lines
+        .map((line) => `<span class="hljs-line">${line}</span>`)
+        .join("\n");
+      $(code).html(codeWithLines);
+    });
+
+    return $.html();
+  }
+
+  return htmlContent;
 }
 
 export function sortByMostRecent<DataType>(
@@ -174,9 +192,9 @@ export async function deleteFilesThenRecreateFolder(folder: CollectionFolder) {
     await fs.mkdir(folder, { recursive: true });
   } else {
     await Promise.all(
-      (await fs.readdir(folder)).map(
-        async (file) => await fs.unlink(`${folder}/${file}`)
-      )
+      (
+        await fs.readdir(folder)
+      ).map(async (file) => await fs.unlink(`${folder}/${file}`))
     );
   }
 }
