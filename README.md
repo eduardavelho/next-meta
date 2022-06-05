@@ -1,13 +1,13 @@
 # A static data management layer for Next.js
 
-This package provides a better programming experience for using NetlifyCMS with Next.js. Also, it provides tools to manage assets (images, icons, manifests) and page headers.
+This package provides a better programming experience for using NetlifyCMS with Next.js. Also, it provides tools to manage assets (images, icons, manifests) and HTML metadata.
 Please refer to this [project](https://github.com/egvelho/next-material-netlify-cms-blog) for some usage examples.
 
 # What is inside the box?
 
 * Generate PWA icons based on a single SVG file;
 * Improved programming experience for NetlifyCMS and Next.js;
-* Component with sensible defaults for page header metadata;
+* Components with sensible defaults for HTML metadata;
 * Tools for handling JSON files.
 
 # A blog post example
