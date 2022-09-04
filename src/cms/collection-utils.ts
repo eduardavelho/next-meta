@@ -100,10 +100,12 @@ export async function markdownToHtml(markdown: string): Promise<string> {
     const $ = cheerio.load(htmlContent);
     $("code").each((_, code) => {
       const lines = $(code).html()?.split("\n") ?? [];
-      const codeWithLines = lines
-        .map((line) => `<span class="hljs-line">${line}</span>`)
-        .join("\n");
-      $(code).html(codeWithLines);
+      if (lines.length > 1) {
+        const codeWithLines = lines
+          .map((line) => `<span class="hljs-line">${line}</span>`)
+          .join("\n");
+        $(code).html(codeWithLines);
+      }
     });
 
     return $.html();
